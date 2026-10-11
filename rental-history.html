@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Car Rental System | Rental History</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- Navigation Bar -->
+
+    <header class="navbar">
+
+        <div class="logo">
+
+            <span>🚗</span>
+
+            <div>
+
+                <h2>CAR RENTAL</h2>
+
+                <p>Management System</p>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="index1.html">Home</a>
+
+            <a href="cars.html">Cars</a>
+
+            <a href="customers.html">Customers</a>
+
+            <a href="booking.html">Booking</a>
+
+            <a href="rental-history.html" class="active">
+                Rental History
+            </a>
+
+            <a href="payment.html">Payment
+            </a>
+
+            <a href="bill.html">Bill</a>
+
+            <a href="about.html">About</a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- Page Header -->
+
+    <section class="page-header">
+
+        <p>RENTAL TRANSACTIONS</p>
+
+        <h1>Rental <span>History</span></h1>
+
+        <p>
+            View and manage all car rental transactions.
+        </p>
+
+    </section>
+
+
+
+    <!-- Summary Cards -->
+
+    <section class="history-summary">
+
+
+        <!-- Total Rentals -->
+
+        <div class="history-stat">
+
+            <div class="history-stat-icon">
+                📋
+            </div>
+
+            <div>
+
+                <h2 id="totalRentals">0</h2>
+
+                <p>Total Rentals</p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Active Rentals -->
+
+        <div class="history-stat">
+
+            <div class="history-stat-icon">
+                🚗
+            </div>
+
+            <div>
+
+                <h2 id="activeRentals">0</h2>
+
+                <p>Active Rentals</p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Completed Rentals -->
+
+        <div class="history-stat">
+
+            <div class="history-stat-icon">
+                ✅
+            </div>
+
+            <div>
+
+                <h2 id="completedRentals">0</h2>
+
+                <p>Completed Rentals</p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Total Revenue -->
+
+        <div class="history-stat">
+
+            <div class="history-stat-icon">
+                💰
+            </div>
+
+            <div>
+
+                <h2 id="totalRevenue">₹0</h2>
+
+                <p>Total Revenue</p>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- Search and Filter -->
+
+    <section class="history-search">
+
+        <div>
+
+            <p>SEARCH TRANSACTIONS</p>
+
+            <h2>Find Rental Record</h2>
+
+        </div>
+
+
+        <div class="history-search-box">
+
+            <input
+                type="text"
+                id="rentalSearch"
+                placeholder="Search Rental ID, Customer or Car"
+                onkeyup="searchRentalHistory()"
+                autocomplete="off"
+            >
+
+
+            <select id="rentalStatusFilter">
+
+                <option value="All">
+                    All Status
+                </option>
+
+                <option value="Active">
+                    Active
+                </option>
+
+                <option value="Completed">
+                    Completed
+                </option>
+
+            </select>
+
+
+            <button
+                type="button"
+                class="search-btn"
+                onclick="searchRentalHistory()"
+            >
+                Search
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Rental History Table -->
+
+    <section class="history-section">
+
+        <div class="section-heading">
+
+            <p>TRANSACTION RECORDS</p>
+
+            <h2>Rental <span>Transactions</span></h2>
+
+            <p>
+                Complete record of cars rented by customers.
+            </p>
+
+        </div>
+
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+                       <tr>
+                           <th>Rental ID</th>
+                           <th>Customer</th>
+                           <th>Car</th>
+                           <th>Start Date</th>
+                           <th>Return Date</th>
+                           <th>Days</th>
+                           <th>Total Amount</th>
+                           <th>Payment</th>
+                           <th>Payment Method</th>
+                           <th>Status</th>
+                       </tr>
+                </thead>
+
+                <!-- JavaScript will add rental records here -->
+
+                <tbody id="rentalHistoryTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Transaction Information -->
+
+    <section class="transaction-info">
+
+
+        <div class="transaction-card">
+
+            <div class="transaction-icon">
+                📊
+            </div>
+
+            <h3>
+                Rental Records
+            </h3>
+
+            <p>
+                Every rental transaction is recorded with
+                customer, car and rental details.
+            </p>
+
+        </div>
+
+
+
+        <div class="transaction-card">
+
+            <div class="transaction-icon">
+                💰
+            </div>
+
+            <h3>
+                Charge Calculation
+            </h3>
+
+            <p>
+                Total rental charges are calculated using
+                the car rental rate and number of days.
+            </p>
+
+        </div>
+
+
+
+        <div class="transaction-card">
+
+            <div class="transaction-icon">
+                🔄
+            </div>
+
+            <h3>
+                Rental Status
+            </h3>
+
+            <p>
+                Transactions can be identified as active
+                or completed after car return.
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <div class="footer-content">
+
+
+            <div class="footer-about">
+
+                <h2>🚗 CAR RENTAL</h2>
+
+                <p>
+                    Car Rental and Booking Management System
+                    designed to manage cars, customers and
+                    rental transactions efficiently.
+                </p>
+
+            </div>
+
+
+
+            <div class="footer-links">
+
+                <h3>Quick Links</h3>
+
+                <a href="index1.html">
+                    Home
+                </a>
+
+                <a href="cars.html">
+                    Cars
+                </a>
+
+                <a href="customers.html">
+                    Customers
+                </a>
+
+                <a href="booking.html">
+                    Booking
+                </a>
+
+            </div>
+
+
+
+            <div class="footer-links">
+
+                <h3>System</h3>
+
+                <a href="rental-history.html">
+                    Rental History
+                </a>
+
+                <a href="about.html">
+                    About System
+                </a>
+
+            </div>
+
+
+
+            <div class="footer-contact">
+
+                <h3>Contact</h3>
+
+                <p>
+                    📍 Bhubaneswar, Odisha
+                </p>
+
+                <p>
+                    📞 +91 XXXXX XXXXX
+                </p>
+
+                <p>
+                    ✉ carrental@example.com
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Car Rental and Booking Management System
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- JavaScript -->
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

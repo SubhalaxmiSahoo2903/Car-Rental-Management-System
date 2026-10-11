@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Payment - Car Rental System</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+
+            <span>🚗</span>
+
+            <div>
+                <h2>CAR RENTAL</h2>
+                <p>Management System</p>
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="index1.html">
+                Home
+            </a>
+
+            <a href="cars.html">
+                Cars
+            </a>
+
+            <a href="customers.html">
+                Customers
+            </a>
+
+            <a href="booking.html">
+                Booking
+            </a>
+
+            <a href="rental-history.html">
+                Rental History
+            </a>
+
+            <a href="payment.html" class="active">
+                Payment
+            </a>
+
+            <a href="bill.html">
+                Bill
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= PAGE HEADER ================= -->
+
+    <section class="page-header">
+
+        <h1>Payment</h1>
+
+        <p>
+            Complete your rental payment and generate your bill.
+        </p>
+
+    </section>
+
+
+    <!-- ================= PAYMENT SECTION ================= -->
+
+    <section class="payment-section">
+
+        <div class="payment-container">
+
+
+            <!-- PAYMENT FORM -->
+
+            <div class="payment-card">
+
+                <h2>💳 Payment Details</h2>
+
+
+                <form id="paymentForm" onsubmit="makePayment(event)">
+
+
+                    <!-- Select Rental -->
+
+                    <div class="form-group">
+
+                        <label for="paymentRental">
+                            Select Rental
+                        </label>
+
+                        <select
+                            id="paymentRental"
+                            name="rentalId"
+                            required
+                            onchange="loadPaymentDetails()">
+
+                            <option value="">
+                                -- Select Rental --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Customer -->
+
+                    <div class="form-group">
+
+                        <label for="paymentCustomer">
+                            Customer Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="paymentCustomer"
+                            placeholder="Customer name"
+                            readonly>
+
+                    </div>
+
+
+                    <!-- Car -->
+
+                    <div class="form-group">
+
+                        <label for="paymentCar">
+                            Car
+                        </label>
+
+                        <input
+                            type="text"
+                            id="paymentCar"
+                            placeholder="Car details"
+                            readonly>
+
+                    </div>
+
+
+                    <!-- Rental Days -->
+
+                    <div class="form-group">
+
+                        <label for="paymentDays">
+                            Rental Days
+                        </label>
+
+                        <input
+                            type="text"
+                            id="paymentDays"
+                            placeholder="Rental days"
+                            readonly>
+
+                    </div>
+
+
+                    <!-- Total Amount -->
+
+                    <div class="form-group">
+
+                        <label for="paymentAmount">
+                            Total Amount
+                        </label>
+
+                        <input
+                            type="text"
+                            id="paymentAmount"
+                            placeholder="Total amount"
+                            readonly>
+
+                    </div>
+
+
+                    <!-- Payment Method -->
+
+                    <div class="form-group">
+
+                        <label for="paymentMethod">
+                            Payment Method
+                        </label>
+
+                        <select
+                            id="paymentMethod"
+                            name="paymentMethod"
+                            required>
+
+                            <option value="">
+                                -- Select Payment Method --
+                            </option>
+
+                            <option value="Cash">
+                                Cash
+                            </option>
+
+                            <option value="UPI">
+                                UPI
+                            </option>
+
+                            <option value="Debit Card">
+                                Debit Card
+                            </option>
+
+                            <option value="Credit Card">
+                                Credit Card
+                            </option>
+
+                            <option value="Net Banking">
+                                Net Banking
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Pay Button -->
+
+                    <button
+                        type="submit"
+                        class="submit-btn">
+
+                        💳 Pay Now
+
+                    </button>
+
+
+                    <!-- Reset Button -->
+
+                    <button
+                        type="button"
+                        class="reset-btn"
+                        onclick="resetPaymentForm()">
+
+                        Reset
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- PAYMENT SUMMARY -->
+
+            <div class="payment-summary">
+
+                <h2>🧾 Payment Summary</h2>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Rental ID
+                    </span>
+
+                    <strong id="summaryRental">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Customer
+                    </span>
+
+                    <strong id="summaryCustomer">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Car
+                    </span>
+
+                    <strong id="summaryCar">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Rental Days
+                    </span>
+
+                    <strong id="summaryDays">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-total">
+
+                    <span>
+                        Total Amount
+                    </span>
+
+                    <strong id="summaryAmount">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+                <div
+                    id="paymentMessage"
+                    class="payment-message">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 Car Rental and Booking Management System
+        </p>
+
+    </footer>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

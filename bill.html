@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bill - Car Rental System</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+
+            <span>🚗</span>
+
+            <div>
+                <h2>CAR RENTAL</h2>
+                <p>Management System</p>
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="index1.html">
+                Home
+            </a>
+
+            <a href="cars.html">
+                Cars
+            </a>
+
+            <a href="customers.html">
+                Customers
+            </a>
+
+            <a href="booking.html">
+                Booking
+            </a>
+
+            <a href="rental-history.html">
+                Rental History
+            </a>
+
+            <a href="payment.html">
+                Payment
+            </a>
+
+            <a href="bill.html" class="active">
+                Bill
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= PAGE HEADER ================= -->
+
+    <section class="page-header">
+
+        <h1>Rental Bill</h1>
+
+        <p>
+            View and print your car rental invoice.
+        </p>
+
+    </section>
+
+
+    <!-- ================= BILL SECTION ================= -->
+
+    <section class="bill-section">
+
+        <div class="bill-container">
+
+
+            <!-- BILL HEADER -->
+
+            <div class="bill-header">
+
+                <div>
+
+                    <h1>
+                        🚗 CAR RENTAL SYSTEM
+                    </h1>
+
+                    <p>
+                        Car Rental and Booking Management System
+                    </p>
+
+                </div>
+
+
+                <div class="invoice-title">
+
+                    <h2>
+                        INVOICE
+                    </h2>
+
+                    <p>
+
+                        <strong>
+                            Invoice Date:
+                        </strong>
+
+                        <span id="invoiceDate">
+                            -
+                        </span>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <hr>
+
+
+            <!-- CUSTOMER AND RENTAL INFORMATION -->
+
+            <div class="bill-info">
+
+
+                <!-- Customer -->
+
+                <div class="bill-info-box">
+
+                    <h3>
+                        Customer Details
+                    </h3>
+
+                    <p>
+
+                        <strong>
+                            Name:
+                        </strong>
+
+                        <span id="billCustomer">
+                            -
+                        </span>
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Customer ID:
+                        </strong>
+
+                        <span id="billCustomerId">
+                            -
+                        </span>
+
+                    </p>
+
+                </div>
+
+
+                <!-- Rental -->
+
+                <div class="bill-info-box">
+
+                    <h3>
+                        Rental Details
+                    </h3>
+
+                    <p>
+
+                        <strong>
+                            Rental ID:
+                        </strong>
+
+                        <span id="billRentalId">
+                            -
+                        </span>
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Payment Status:
+                        </strong>
+
+                        <span id="billPaymentStatus">
+                            Pending
+                        </span>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= VEHICLE DETAILS ================= -->
+
+            <div class="bill-car-details">
+
+                <h3>
+                    Vehicle Details
+                </h3>
+
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Car
+                            </th>
+
+                            <th>
+                                Registration No.
+                            </th>
+
+                            <th>
+                                Rental Days
+                            </th>
+
+                            <th>
+                                Rate / Day
+                            </th>
+
+                            <th>
+                                Amount
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td id="billCar">
+                                -
+                            </td>
+
+                            <td id="billRegistration">
+                                -
+                            </td>
+
+                            <td id="billDays">
+                                -
+                            </td>
+
+                            <td id="billRate">
+                                ₹0
+                            </td>
+
+                            <td id="billAmount">
+                                ₹0
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- ================= RENTAL DATES ================= -->
+
+            <div class="bill-dates">
+
+                <div>
+
+                    <strong>
+                        Start Date:
+                    </strong>
+
+                    <span id="billStartDate">
+                        -
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Return Date:
+                    </strong>
+
+                    <span id="billReturnDate">
+                        -
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= BILL TOTAL ================= -->
+
+            <div class="bill-total-section">
+
+
+                <div class="bill-total-row">
+
+                    <span>
+                        Rental Amount
+                    </span>
+
+                    <strong id="billRentalAmount">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+                <div class="bill-total-row">
+
+                    <span>
+                        Tax
+                    </span>
+
+                    <strong id="billTax">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+                <div class="bill-total-row final-total">
+
+                    <span>
+                        Total Amount
+                    </span>
+
+                    <strong id="billTotal">
+                        ₹0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= PAYMENT INFORMATION ================= -->
+
+            <div class="bill-payment">
+
+                <h3>
+                    Payment Information
+                </h3>
+
+
+                <p>
+
+                    <strong>
+                        Payment Method:
+                    </strong>
+
+                    <span id="billPaymentMethod">
+                        -
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Payment Status:
+                    </strong>
+
+                    <span
+                        id="billPaymentStatus2"
+                        class="paid-status">
+
+                        Pending
+
+                    </span>
+
+                </p>
+
+            </div>
+
+
+            <!-- ================= BILL FOOTER ================= -->
+
+            <div class="bill-footer">
+
+                <h3>
+                    Thank You for Choosing Us!
+                </h3>
+
+                <p>
+                    We hope you enjoyed your journey.
+                </p>
+
+                <p>
+                    Please keep this invoice for your records.
+                </p>
+
+            </div>
+
+
+            <!-- ================= BUTTONS ================= -->
+
+            <div class="bill-buttons">
+
+                <button
+                    type="button"
+                    class="print-btn"
+                    onclick="window.print()">
+
+                    🖨️ Print Bill
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="payment-btn"
+                    onclick="goToPayment()">
+
+                    💳 Go to Payment
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 Car Rental and Booking Management System
+        </p>
+
+    </footer>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

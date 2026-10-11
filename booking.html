@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Booking - Car Rental System</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        /* =========================================
+           BOOKING PAGE DESIGN
+        ========================================= */
+
+        .booking-section,
+        .return-section {
+            padding: 60px 8%;
+        }
+
+        .booking-section {
+            background: transparent;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-heading .section-subtitle {
+            color: #2563eb;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            color: #0f172a;
+            font-size: 32px;
+            margin: 5px 0 10px;
+        }
+
+        .section-heading > p:last-child {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+
+        /* =========================================
+           BOOKING FORM
+        ========================================= */
+
+        .rental-form {
+
+            max-width: 850px;
+
+            margin: 0 auto;
+
+            padding: 40px;
+
+            background: #ffffff;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 10px 35px rgba(37, 99, 235, 0.10);
+
+            border: 1px solid #dbeafe;
+        }
+
+
+        /* =========================================
+           FORM ROW
+        ========================================= */
+
+        .form-row {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 25px;
+        }
+
+
+        /* =========================================
+           FORM GROUP
+        ========================================= */
+
+        .form-group {
+
+            margin-bottom: 24px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #1e293b;
+
+            font-size: 15px;
+
+            font-weight: 600;
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 13px 15px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 10px;
+
+            background: #f8fbff;
+
+            color: #1e293b;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: all 0.25s ease;
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+
+            border-color: #60a5fa;
+
+            background: #ffffff;
+
+            box-shadow:
+                0 0 0 4px rgba(96, 165, 250, 0.15);
+        }
+
+
+        .form-group select {
+
+            cursor: pointer;
+        }
+
+
+        .form-group input[readonly] {
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================================
+           CHARGE BOX
+        ========================================= */
+
+        .charge-box {
+
+            margin-top: 5px;
+
+            margin-bottom: 30px;
+
+            padding: 22px 25px;
+
+            border-radius: 15px;
+
+            background: linear-gradient(
+                135deg,
+                #e0f2fe,
+                #eef2ff
+            );
+
+            border: 1px solid #bfdbfe;
+        }
+
+
+        .charge-info {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+
+        .charge-info span {
+
+            color: #334155;
+
+            font-size: 17px;
+
+            font-weight: 600;
+        }
+
+
+        .charge-info strong {
+
+            color: #1d4ed8;
+
+            font-size: 28px;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================================
+           FORM BUTTONS
+        ========================================= */
+
+        .form-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            margin-top: 10px;
+        }
+
+
+        .rent-btn,
+        .reset-btn {
+
+            border: none;
+
+            padding: 13px 28px;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: all 0.25s ease;
+        }
+
+
+        .rent-btn {
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #4f46e5
+            );
+
+            color: #ffffff;
+
+            box-shadow:
+                0 6px 18px rgba(37, 99, 235, 0.25);
+        }
+
+
+        .rent-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 24px rgba(37, 99, 235, 0.30);
+        }
+
+
+        .reset-btn {
+
+            background: #e2e8f0;
+
+            color: #334155;
+        }
+
+
+        .reset-btn:hover {
+
+            background: #cbd5e1;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================================
+           RETURN SECTION
+        ========================================= */
+
+        .return-section {
+
+            background: rgba(224, 242, 254, 0.45);
+
+            border-top: 1px solid #dbeafe;
+        }
+
+
+        .return-card-container {
+
+            max-width: 1000px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 25px;
+        }
+
+
+        /* =========================================
+           RENTAL STATUS CARDS
+        ========================================= */
+
+        .rental-status {
+
+            padding: 50px 8%;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+
+            background: transparent;
+        }
+
+
+        .status-card {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 18px;
+
+            padding: 25px;
+
+            background: #ffffff;
+
+            border: 1px solid #dbeafe;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 8px 25px rgba(37, 99, 235, 0.08);
+
+            transition: all 0.25s ease;
+        }
+
+
+        .status-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 14px 30px rgba(37, 99, 235, 0.14);
+        }
+
+
+        .status-icon {
+
+            min-width: 52px;
+
+            height: 52px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background: #e0f2fe;
+
+            font-size: 25px;
+        }
+
+
+        .status-card h3 {
+
+            margin: 0 0 8px;
+
+            color: #0f172a;
+
+            font-size: 18px;
+        }
+
+
+        .status-card p {
+
+            margin: 0;
+
+            color: #64748b;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================================
+           RESPONSIVE DESIGN
+        ========================================= */
+
+        @media (max-width: 800px) {
+
+            .booking-section,
+            .return-section {
+
+                padding: 45px 5%;
+            }
+
+
+            .rental-form {
+
+                padding: 25px;
+            }
+
+
+            .form-row {
+
+                grid-template-columns: 1fr;
+
+                gap: 0;
+            }
+
+
+            .rental-status {
+
+                grid-template-columns: 1fr;
+
+                padding: 40px 5%;
+            }
+        }
+
+
+        @media (max-width: 550px) {
+
+            .section-heading h2 {
+
+                font-size: 26px;
+            }
+
+
+            .rental-form {
+
+                padding: 20px;
+
+                border-radius: 15px;
+            }
+
+
+            .charge-info {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+
+            .charge-info strong {
+
+                font-size: 25px;
+            }
+
+
+            .form-buttons {
+
+                flex-direction: column;
+            }
+
+
+            .rent-btn,
+            .reset-btn {
+
+                width: 100%;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        🚗 Car Rental System
+    </div>
+
+    <nav>
+
+        <a href="index1.html">Home</a>
+
+        <a href="cars.html">Cars</a>
+
+        <a href="customers.html">Customers</a>
+
+        <a href="booking.html" class="active">Booking</a>
+
+        <a href="rental-history.html">Rental History</a>
+
+        <a href="about.html">About</a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================================
+     PAGE HEADER
+========================================= -->
+
+<section class="page-header">
+
+    <p>CAR RENTAL MANAGEMENT</p>
+
+    <h1>Car Booking</h1>
+
+    <span>
+        Rent a car easily and calculate your rental charges
+    </span>
+
+</section>
+
+
+
+<!-- =========================================
+     BOOKING SECTION
+========================================= -->
+
+<section class="booking-section">
+
+
+    <div class="section-heading">
+
+        <p class="section-subtitle">
+            RENT A CAR
+        </p>
+
+        <h2>
+            Create New Rental
+        </h2>
+
+        <p>
+            Select a registered customer and an available car.
+        </p>
+
+    </div>
+
+    <!-- =====================================
+         BOOKING FORM
+    ====================================== -->
+
+    <form
+        id="rentalForm"
+        class="rental-form"
+        onsubmit="rentCar(event)"
+    >
+
+
+        <!-- CUSTOMER -->
+
+        <div class="form-group">
+
+            <label for="bookingCustomer">
+                Select Customer
+            </label>
+
+            <select
+                id="bookingCustomer"
+                name="customerId"
+                required
+            >
+
+                <option value="">
+                    Select Customer
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- CAR -->
+
+        <div class="form-group">
+
+            <label for="bookingCar">
+                Select Car
+            </label>
+
+            <select
+                id="bookingCar"
+                name="registration"
+                onchange="updateRentalRate()"
+                required
+            >
+
+                <option value="">
+                    Select Available Car
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- START DATE + RETURN DATE -->
+
+        <div class="form-row">
+
+
+            <div class="form-group">
+
+                <label for="startDate">
+                    Rental Start Date
+                </label>
+
+                <input
+                    type="date"
+                    id="startDate"
+                    name="startDate"
+                    onchange="calculateRentalDays()"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="returnDate">
+                    Expected Return Date
+                </label>
+
+                <input
+                    type="date"
+                    id="returnDate"
+                    onchange="calculateRentalDays()"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RENTAL DAYS + RATE -->
+
+        <div class="form-row">
+
+
+            <div class="form-group">
+
+                <label for="rentalDays">
+                    Number of Days
+                </label>
+
+                <input
+                    type="number"
+                    id="rentalDays"
+                    name="days"
+                    placeholder="Calculated automatically"
+                    readonly
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="rentalRate">
+                    Rental Rate / Day
+                </label>
+
+                <input
+                    type="text"
+                    id="rentalRate"
+                    placeholder="Select a car"
+                    readonly
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================
+             TOTAL CHARGE
+        ================================== -->
+
+        <div class="charge-box">
+
+            <div class="charge-info">
+
+                <span>
+                    Total Rental Charge
+                </span>
+
+                <strong id="totalCharge">
+                    ₹0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BUTTONS -->
+
+        <div class="form-buttons">
+
+            <button
+                type="submit"
+                class="rent-btn"
+            >
+                🚗 Rent Car
+            </button>
+
+
+            <button
+                type="reset"
+                class="reset-btn"
+                onclick="resetRentalForm()"
+            >
+                Clear
+            </button>
+
+        </div>
+
+
+    </form>
+
+</section>
+
+
+
+<!-- =========================================
+     RETURN CAR SECTION
+========================================= -->
+
+<section class="return-section">
+
+
+    <div class="section-heading">
+
+        <p class="section-subtitle">
+            RETURN VEHICLE
+        </p>
+
+        <h2>
+            Return Rented Car
+        </h2>
+
+        <p>
+            Currently rented cars can be returned from here.
+        </p>
+
+    </div>
+
+
+
+    <div
+        id="returnCarList"
+        class="return-card-container"
+    >
+
+        <!-- JavaScript will add rented cars here -->
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     RENTAL STATUS
+========================================= -->
+
+<section class="rental-status">
+
+
+    <div class="status-card">
+
+        <div class="status-icon">
+            🚗
+        </div>
+
+        <div>
+
+            <h3>
+                Easy Booking
+            </h3>
+
+            <p>
+                Select a customer and available car
+                to create a rental.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="status-card">
+
+        <div class="status-icon">
+            💰
+        </div>
+
+        <div>
+
+            <h3>
+                Automatic Charges
+            </h3>
+
+            <p>
+                Rental charges are calculated
+                automatically based on rental days.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="status-card">
+
+        <div class="status-icon">
+            🔄
+        </div>
+
+        <div>
+
+            <h3>
+                Easy Return
+            </h3>
+
+            <p>
+                Returned cars automatically become
+                available for the next booking.
+            </p>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <div class="footer-content">
+
+
+        <div class="footer-section">
+
+            <h3>
+                🚗 Car Rental System
+            </h3>
+
+            <p>
+                Simple, reliable and convenient
+                car rental management.
+            </p>
+
+        </div>
+
+
+
+        <div class="footer-section">
+
+            <h3>
+                Quick Links
+            </h3>
+
+            <a href="index1.html">
+                Home
+            </a>
+
+            <a href="cars.html">
+                Cars
+            </a>
+
+            <a href="customers.html">
+                Customers
+            </a>
+
+            <a href="booking.html">
+                Booking
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-section">
+
+            <h3>
+                Management
+            </h3>
+
+            <a href="rental-history.html">
+                Rental History
+            </a>
+
+            <a href="about.html">
+                About System
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Car Rental System. All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- JAVASCRIPT -->
+
+<script src="js/script.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Cars - Car Rental System</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+    <style>
+
+        /* =========================================
+           CAR PAGE
+        ========================================= */
+
+        .car-search {
+            max-width: 1200px;
+            margin: 40px auto 20px;
+            padding: 0 20px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .car-search p {
+            margin: 0 0 6px;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #777;
+        }
+
+        .car-search h2 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .car-search-box {
+            width: 420px;
+        }
+
+        .car-search-box input {
+            width: 100%;
+            padding: 14px 18px;
+
+            border: 1px solid #ddd;
+            border-radius: 12px;
+
+            font-size: 14px;
+            outline: none;
+
+            box-sizing: border-box;
+
+            transition: 0.3s;
+        }
+
+        .car-search-box input:focus {
+            border-color: #222;
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.08);
+        }
+
+
+        /* =========================================
+           CAR SECTION
+        ========================================= */
+
+        .cars-section {
+            max-width: 1200px;
+            margin: 20px auto 60px;
+            padding: 0 20px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-heading .section-subtitle {
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #777;
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            font-size: 34px;
+            margin: 0 0 10px;
+        }
+
+        .section-heading > p:last-child {
+            color: #777;
+        }
+
+
+        /* =========================================
+           CAR GRID
+        ========================================= */
+
+        .car-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 28px;
+        }
+
+
+        /* =========================================
+           CAR CARD
+        ========================================= */
+
+        .car-card {
+            background: #ffffff;
+
+            border: 1px solid #e8e8e8;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.07);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+
+            position: relative;
+        }
+
+        .car-card:hover {
+
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 18px 40px rgba(0,0,0,0.13);
+        }
+
+
+        /* =========================================
+           CAR IMAGE
+        ========================================= */
+
+        .car-image {
+
+            width: 100%;
+            height: 220px;
+
+            background: #f5f5f5;
+
+            overflow: hidden;
+
+            position: relative;
+        }
+
+        .car-image img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: transform 0.4s ease;
+        }
+
+        .car-card:hover .car-image img {
+
+            transform: scale(1.06);
+        }
+
+
+        /* =========================================
+           STATUS
+        ========================================= */
+
+        .car-status {
+
+            position: absolute;
+
+            top: 15px;
+            right: 15px;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            background: white;
+
+            box-shadow:
+                0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .status-available {
+
+            color: #15803d;
+            background: #dcfce7;
+        }
+
+        .status-rented {
+
+            color: #b91c1c;
+            background: #fee2e2;
+        }
+
+
+        /* =========================================
+           CAR DETAILS
+        ========================================= */
+
+        .car-details {
+
+            padding: 22px;
+        }
+
+        .car-brand {
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            color: #777;
+
+            margin-bottom: 5px;
+        }
+
+        .car-name {
+
+            font-size: 23px;
+
+            font-weight: 700;
+
+            margin: 0 0 15px;
+        }
+
+
+        .car-meta {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 10px;
+
+            margin-bottom: 20px;
+        }
+
+        .car-meta-item {
+
+            background: #f8f8f8;
+
+            border-radius: 10px;
+
+            padding: 10px;
+        }
+
+        .car-meta-label {
+
+            display: block;
+
+            font-size: 11px;
+
+            color: #888;
+
+            margin-bottom: 4px;
+        }
+
+        .car-meta-value {
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            color: #333;
+        }
+
+
+        /* =========================================
+           PRICE
+        ========================================= */
+
+        .car-price {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 18px;
+
+            padding-top: 5px;
+        }
+
+        .price-label {
+
+            font-size: 12px;
+
+            color: #777;
+        }
+
+        .price {
+
+            font-size: 21px;
+
+            font-weight: bold;
+        }
+
+        .price span {
+
+            font-size: 12px;
+
+            font-weight: normal;
+
+            color: #777;
+        }
+
+
+        /* =========================================
+           BOOK BUTTON
+        ========================================= */
+
+        .book-btn {
+
+            display: block;
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #222;
+
+            color: white;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .book-btn:hover {
+
+            background: #444;
+
+            transform: translateY(-1px);
+        }
+
+        .book-btn.disabled {
+
+            background: #ddd;
+
+            color: #888;
+
+            cursor: not-allowed;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================
+           NO RESULTS
+        ========================================= */
+
+        .no-results {
+
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            padding: 50px;
+
+            background: #fafafa;
+
+            border-radius: 15px;
+
+            color: #777;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================================
+           INFORMATION CARDS
+        ========================================= */
+
+        .car-info {
+
+            max-width: 1200px;
+
+            margin: 0 auto 70px;
+
+            padding: 0 20px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .info-card {
+
+            display: flex;
+
+            gap: 15px;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            background: #f8f8f8;
+
+            border: 1px solid #eee;
+
+            transition: 0.3s;
+        }
+
+        .info-card:hover {
+
+            transform: translateY(-4px);
+
+            background: white;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .info-icon {
+
+            width: 48px;
+            height: 48px;
+
+            min-width: 48px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: white;
+
+            font-size: 24px;
+
+            box-shadow:
+                0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .info-card h3 {
+
+            margin: 0 0 8px;
+
+            font-size: 17px;
+        }
+
+        .info-card p {
+
+            margin: 0;
+
+            color: #777;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1000px) {
+
+            .car-grid {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+            .car-info {
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            .car-search {
+
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+            .car-search-box {
+
+                width: 100%;
+            }
+
+            .car-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .car-info {
+
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        🚗 Car Rental System
+    </div>
+
+    <nav>
+
+        <a href="index1.html">
+            Home
+        </a>
+
+        <a href="cars.html"
+           class="active">
+            Cars
+        </a>
+
+        <a href="customers.html">
+            Customers
+        </a>
+
+        <a href="booking.html">
+            Booking
+        </a>
+
+        <a href="rental-history.html">
+            Rental History
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================================
+     PAGE HEADER
+========================================= -->
+
+<section class="page-header">
+
+    <p>
+        CAR RENTAL MANAGEMENT
+    </p>
+
+    <h1>
+        Our Cars
+    </h1>
+
+    <span>
+        Choose from our collection of comfortable
+        and reliable vehicles
+    </span>
+
+</section>
+
+
+
+<!-- =========================================
+     CAR SEARCH
+========================================= -->
+
+<section class="car-search">
+
+    <div>
+
+        <p>
+            VEHICLE INVENTORY
+        </p>
+
+        <h2>
+            Find Your Car
+        </h2>
+
+    </div>
+
+
+    <div class="car-search-box">
+
+        <input
+            type="text"
+            id="carSearch"
+            placeholder="🔍 Search by registration, brand, model or type..."
+            onkeyup="searchCars()"
+            autocomplete="off"
+        >
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     CAR LIST
+========================================= -->
+
+<section class="cars-section">
+
+    <div class="section-heading">
+
+        <p class="section-subtitle">
+            AVAILABLE FLEET
+        </p>
+
+        <h2>
+            Explore Our Cars
+        </h2>
+
+        <p>
+            Find the perfect vehicle for your journey.
+        </p>
+
+    </div>
+
+
+    <!--
+        JavaScript will automatically
+        insert the car cards here.
+    -->
+
+    <div class="car-grid"
+         id="carTableBody">
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     CAR INFORMATION
+========================================= -->
+
+<section class="car-info">
+
+
+    <div class="info-card">
+
+        <div class="info-icon">
+            🚗
+        </div>
+
+        <div>
+
+            <h3>
+                Wide Range of Cars
+            </h3>
+
+            <p>
+                Choose from hatchbacks, sedans,
+                SUVs and MUVs according to
+                your travel requirements.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="info-card">
+
+        <div class="info-icon">
+            💰
+        </div>
+
+        <div>
+
+            <h3>
+                Affordable Rates
+            </h3>
+
+            <p>
+                Each vehicle has a fixed rental
+                rate per day for simple and
+                transparent billing.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="info-card">
+
+        <div class="info-icon">
+            🔄
+        </div>
+
+        <div>
+
+            <h3>
+                Live Availability
+            </h3>
+
+            <p>
+                Car availability changes
+                automatically when a car is
+                rented or returned.
+            </p>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <div class="footer-content">
+
+
+        <div class="footer-section">
+
+            <h3>
+                🚗 Car Rental System
+            </h3>
+
+            <p>
+                Simple, reliable and convenient
+                car rental management.
+            </p>
+
+        </div>
+
+
+
+        <div class="footer-section">
+
+            <h3>
+                Quick Links
+            </h3>
+
+            <a href="index1.html">
+                Home
+            </a>
+
+            <a href="cars.html">
+                Cars
+            </a>
+
+            <a href="customers.html">
+                Customers
+            </a>
+
+            <a href="booking.html">
+                Booking
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-section">
+
+            <h3>
+                Management
+            </h3>
+
+            <a href="rental-history.html">
+                Rental History
+            </a>
+
+            <a href="about.html">
+                About System
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Car Rental System.
+            All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script src="js/script.js"></script>
+
+
+</body>
+
+</html>

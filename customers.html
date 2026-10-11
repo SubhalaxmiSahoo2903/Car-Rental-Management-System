@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Customers - Car Rental System</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        /* =========================================
+           CUSTOMER PAGE
+        ========================================= */
+
+        .customer-section {
+            padding: 60px 8%;
+            background: transparent;
+        }
+
+
+        /* =========================================
+           FORM HEADING
+        ========================================= */
+
+        .form-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .form-heading > p:first-child {
+            color: #2563eb;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .form-heading h2 {
+            color: #0f172a;
+            font-size: 32px;
+            margin: 5px 0 10px;
+        }
+
+        .form-heading > p:last-child {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+
+        /* =========================================
+           CUSTOMER FORM
+        ========================================= */
+
+        .customer-form {
+
+            max-width: 850px;
+
+            margin: 0 auto;
+
+            padding: 40px;
+
+            background: #ffffff;
+
+            border: 1px solid #dbeafe;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 10px 35px rgba(37, 99, 235, 0.10);
+        }
+
+
+        .customer-form .form-row {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 25px;
+        }
+
+
+        .customer-form .form-group {
+
+            margin-bottom: 24px;
+        }
+
+
+        .customer-form label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #1e293b;
+
+            font-size: 15px;
+
+            font-weight: 600;
+        }
+
+
+        .customer-form input {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 13px 15px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 10px;
+
+            background: #f8fbff;
+
+            color: #1e293b;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: all 0.25s ease;
+        }
+
+
+        .customer-form input:focus {
+
+            border-color: #60a5fa;
+
+            background: #ffffff;
+
+            box-shadow:
+                0 0 0 4px rgba(96, 165, 250, 0.15);
+        }
+
+
+        /* =========================================
+           FORM BUTTONS
+        ========================================= */
+
+        .customer-form .form-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            margin-top: 10px;
+        }
+
+
+        .register-btn,
+        .customer-form .reset-btn {
+
+            border: none;
+
+            padding: 13px 28px;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: all 0.25s ease;
+        }
+
+
+        .register-btn {
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #4f46e5
+            );
+
+            color: #ffffff;
+
+            box-shadow:
+                0 6px 18px rgba(37, 99, 235, 0.25);
+        }
+
+
+        .register-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 24px rgba(37, 99, 235, 0.30);
+        }
+
+
+        .customer-form .reset-btn {
+
+            background: #e2e8f0;
+
+            color: #334155;
+        }
+
+
+        .customer-form .reset-btn:hover {
+
+            background: #cbd5e1;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================================
+           CUSTOMER SEARCH
+        ========================================= */
+
+        .customer-search {
+
+            padding: 35px 8%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            background: rgba(224, 242, 254, 0.55);
+
+            border-top: 1px solid #dbeafe;
+
+            border-bottom: 1px solid #dbeafe;
+        }
+
+
+        .customer-search > div:first-child p {
+
+            color: #2563eb;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
+
+            margin: 0 0 6px;
+        }
+
+
+        .customer-search h2 {
+
+            margin: 0;
+
+            color: #0f172a;
+
+            font-size: 25px;
+        }
+
+
+        .customer-search-box {
+
+            width: 420px;
+
+            max-width: 100%;
+        }
+
+
+        .customer-search-box input {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 14px 18px;
+
+            border: 1px solid #bfdbfe;
+
+            border-radius: 12px;
+
+            background: #ffffff;
+
+            color: #1e293b;
+
+            font-size: 15px;
+
+            outline: none;
+
+            box-shadow:
+                0 5px 18px rgba(37, 99, 235, 0.08);
+
+            transition: all 0.25s ease;
+        }
+
+
+        .customer-search-box input:focus {
+
+            border-color: #60a5fa;
+
+            box-shadow:
+                0 0 0 4px rgba(96, 165, 250, 0.15);
+        }
+
+
+        /* =========================================
+           CUSTOMER RECORDS
+        ========================================= */
+
+        .customer-list {
+
+            padding: 60px 8%;
+
+            background: transparent;
+        }
+
+
+        .customer-list .section-heading {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+
+        .customer-list .section-subtitle {
+
+            color: #2563eb;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .customer-list .section-heading h2 {
+
+            color: #0f172a;
+
+            font-size: 32px;
+
+            margin: 5px 0 10px;
+        }
+
+
+        .customer-list .section-heading > p:last-child {
+
+            color: #64748b;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================================
+           TABLE
+        ========================================= */
+
+        .table-container {
+
+            width: 100%;
+
+            overflow-x: auto;
+
+            background: #ffffff;
+
+            border-radius: 18px;
+
+            border: 1px solid #dbeafe;
+
+            box-shadow:
+                0 10px 30px rgba(37, 99, 235, 0.08);
+        }
+
+
+        .table-container table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 750px;
+        }
+
+
+        .table-container th {
+
+            padding: 16px 18px;
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #4f46e5
+            );
+
+            color: #ffffff;
+
+            font-size: 14px;
+
+            text-align: left;
+
+            white-space: nowrap;
+        }
+
+
+        .table-container td {
+
+            padding: 15px 18px;
+
+            border-bottom: 1px solid #e2e8f0;
+
+            color: #334155;
+
+            font-size: 14px;
+
+            background: #ffffff;
+        }
+
+
+        .table-container tr:last-child td {
+
+            border-bottom: none;
+        }
+
+
+        .table-container tbody tr:hover td {
+
+            background: #f0f9ff;
+        }
+
+
+        /* =========================================
+           CUSTOMER INFORMATION CARDS
+        ========================================= */
+
+        .customer-info {
+
+            padding: 50px 8%;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+
+            background: rgba(224, 242, 254, 0.40);
+
+            border-top: 1px solid #dbeafe;
+        }
+
+
+        .customer-info-card {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 18px;
+
+            padding: 25px;
+
+            background: #ffffff;
+
+            border: 1px solid #dbeafe;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 8px 25px rgba(37, 99, 235, 0.08);
+
+            transition: all 0.25s ease;
+        }
+
+
+        .customer-info-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 14px 30px rgba(37, 99, 235, 0.14);
+        }
+
+
+        .customer-info-icon {
+
+            min-width: 52px;
+
+            height: 52px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background: #e0f2fe;
+
+            font-size: 24px;
+        }
+
+
+        .customer-info-card h3 {
+
+            margin: 0 0 8px;
+
+            color: #0f172a;
+
+            font-size: 18px;
+        }
+
+
+        .customer-info-card p {
+
+            margin: 0;
+
+            color: #64748b;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================================
+           RESPONSIVE DESIGN
+        ========================================= */
+
+        @media (max-width: 850px) {
+
+            .customer-form .form-row {
+
+                grid-template-columns: 1fr;
+
+                gap: 0;
+            }
+
+
+            .customer-search {
+
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+
+            .customer-search-box {
+
+                width: 100%;
+            }
+
+
+            .customer-info {
+
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media (max-width: 550px) {
+
+            .customer-section,
+            .customer-list {
+
+                padding: 45px 5%;
+            }
+
+
+            .customer-form {
+
+                padding: 25px;
+
+                border-radius: 15px;
+            }
+
+
+            .form-heading h2,
+            .customer-list .section-heading h2 {
+
+                font-size: 26px;
+            }
+
+
+            .customer-form .form-buttons {
+
+                flex-direction: column;
+            }
+
+
+            .register-btn,
+            .customer-form .reset-btn {
+
+                width: 100%;
+            }
+
+
+            .customer-search {
+
+                padding: 30px 5%;
+            }
+
+
+            .customer-info {
+
+                padding: 40px 5%;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     NAVIGATION BAR
+========================================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        🚗 Car Rental System
+    </div>
+
+    <nav>
+
+        <a href="index1.html">Home</a>
+
+        <a href="cars.html">Cars</a>
+
+        <a href="customers.html" class="active">
+            Customers
+        </a>
+
+        <a href="booking.html">
+            Booking
+        </a>
+
+        <a href="rental-history.html">
+            Rental History
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================================
+     PAGE HEADER
+========================================= -->
+
+<section class="page-header">
+
+    <p>
+        CAR RENTAL MANAGEMENT
+    </p>
+
+    <h1>
+        Customer Management
+    </h1>
+
+    <span>
+        Register and manage customer information easily
+    </span>
+
+</section>
+
+
+
+<!-- =========================================
+     CUSTOMER REGISTRATION
+========================================= -->
+
+<section class="customer-section">
+
+
+    <div class="form-heading">
+
+        <p>
+            CUSTOMER REGISTRATION
+        </p>
+
+        <h2>
+            Register New Customer
+        </h2>
+
+        <p>
+            Enter customer details to create a rental account.
+        </p>
+
+    </div>
+
+
+
+    <form
+        id="customerForm"
+        class="customer-form"
+        onsubmit="registerCustomer(event)"
+    >
+
+
+        <!-- CUSTOMER ID + NAME -->
+
+        <div class="form-row">
+
+
+            <div class="form-group">
+
+                <label for="customerId">
+                    Customer ID
+                </label>
+
+                <input
+                    type="text"
+                    id="customerId"
+                    placeholder="Enter Customer ID"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="customerName">
+                    Customer Name
+                </label>
+
+                <input
+                    type="text"
+                    id="customerName"
+                    placeholder="Enter Full Name"
+                    required
+                >
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- CONTACT + LICENSE -->
+
+        <div class="form-row">
+
+
+            <div class="form-group">
+
+                <label for="contactNumber">
+                    Contact Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="contactNumber"
+                    placeholder="Enter 10-digit Contact Number"
+                    maxlength="10"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="licenseNumber">
+                    Driving License Number
+                </label>
+
+                <input
+                    type="text"
+                    id="licenseNumber"
+                    placeholder="Enter Driving License Number"
+                    required
+                >
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- BUTTONS -->
+
+        <div class="form-buttons">
+
+            <button
+                type="submit"
+                class="register-btn"
+            >
+                Register Customer
+            </button>
+
+
+            <button
+                type="reset"
+                class="reset-btn"
+            >
+                Clear
+            </button>
+
+        </div>
+
+
+    </form>
+
+</section>
+
+
+
+<!-- =========================================
+     CUSTOMER SEARCH
+========================================= -->
+
+<section class="customer-search">
+
+
+    <div>
+
+        <p>
+            CUSTOMER DATABASE
+        </p>
+
+        <h2>
+            Search Customers
+        </h2>
+
+    </div>
+
+
+    <div class="customer-search-box">
+
+        <input
+            type="text"
+            id="customerSearch"
+            placeholder="Search by ID, name or contact..."
+            onkeyup="searchCustomers()"
+        >
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     CUSTOMER RECORDS
+========================================= -->
+
+<section class="customer-list">
+
+
+    <div class="section-heading">
+
+        <p class="section-subtitle">
+            REGISTERED CUSTOMERS
+        </p>
+
+        <h2>
+            Customer Records
+        </h2>
+
+        <p>
+            View and manage all registered customers.
+        </p>
+
+    </div>
+
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Customer ID
+                    </th>
+
+                    <th>
+                        Name
+                    </th>
+
+                    <th>
+                        Contact Number
+                    </th>
+
+                    <th>
+                        Driving License
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+
+                    <th>
+                        Action
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="customerTableBody">
+
+                <!-- JavaScript inserts customer records here -->
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     CUSTOMER INFORMATION
+========================================= -->
+
+<section class="customer-info">
+
+
+    <div class="customer-info-card">
+
+        <div class="customer-info-icon">
+            👤
+        </div>
+
+        <div>
+
+            <h3>
+                Easy Registration
+            </h3>
+
+            <p>
+                Register customers by entering their
+                basic details, contact number and
+                driving license information.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="customer-info-card">
+
+        <div class="customer-info-icon">
+            🔐
+        </div>
+
+        <div>
+
+            <h3>
+                Secure Records
+            </h3>
+
+            <p>
+                Customer information is stored
+                systematically for easy access
+                during car rental transactions.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="customer-info-card">
+
+        <div class="customer-info-icon">
+            🚗
+        </div>
+
+        <div>
+
+            <h3>
+                Easy Rental
+            </h3>
+
+            <p>
+                Registered customers can be selected
+                directly while making a car booking.
+            </p>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <div class="footer-content">
+
+
+        <div class="footer-section">
+
+            <h3>
+                🚗 Car Rental System
+            </h3>
+
+            <p>
+                Simple, reliable and convenient
+                car rental management.
+            </p>
+
+        </div>
+
+
+
+        <div class="footer-section">
+
+            <h3>
+                Quick Links
+            </h3>
+
+            <a href="index1.html">
+                Home
+            </a>
+
+            <a href="cars.html">
+                Cars
+            </a>
+
+            <a href="customers.html">
+                Customers
+            </a>
+
+            <a href="booking.html">
+                Booking
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-section">
+
+            <h3>
+                Management
+            </h3>
+
+            <a href="rental-history.html">
+                Rental History
+            </a>
+
+            <a href="about.html">
+                About System
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Car Rental System. All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- JAVASCRIPT -->
+
+<script src="js/script.js"></script>
+
+
+</body>
+
+</html>
